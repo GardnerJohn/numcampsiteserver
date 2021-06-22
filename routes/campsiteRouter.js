@@ -1,5 +1,4 @@
 const express = require('express');
-const { findByIdAndDelete } = require('../models/campsite');
 const Campsite = require('../models/campsite');
 const campsiteRouter = express.Router();
 
