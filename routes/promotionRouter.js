@@ -39,9 +39,9 @@ promotionRouter
 	});
 
 promotionRouter
-	.route('/:promotionsId')
+	.route('/:promotionId')
 	.get((req, res, next) => {
-		Promotion.findById(req.params.promotionsId)
+		Promotion.findById(req.params.promotionId)
 			.then((partner) => {
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
@@ -51,11 +51,11 @@ promotionRouter
 	})
 	.post((req, res) => {
 		res.statusCode = 403;
-		res.end(`POST operation not supported on /promotions/${req.params.promotionsId}`);
+		res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
 	})
 	.put((req, res, next) => {
 		Promotion.findByIdAndUpdate(
-			req.params.promotionsId,
+			req.params.promotionId,
 			{
 				$set: req.body
 			},
@@ -69,7 +69,7 @@ promotionRouter
 			.catch((err) => next(err));
 	})
 	.delete((req, res) => {
-		Promotion.findByIdAndDelete(req.params.promotionsId)
+		Promotion.findByIdAndDelete(req.params.promotionId)
 			.then((response) => {
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');

@@ -39,7 +39,7 @@ partnerRouter
 	});
 
 partnerRouter
-	.route('/:partnersId')
+	.route('/:partnerId')
 	.get((req, res, next) => {
 		Partner.findById(req.params.partnerId)
 			.then((partner) => {
@@ -51,7 +51,7 @@ partnerRouter
 	})
 	.post((req, res) => {
 		res.statusCode = 403;
-		res.end(`POST operation not supported on /partners/${req.params.partnersId}`);
+		res.end(`POST operation not supported on /partners/${req.params.partnerId}`);
 	})
 	.put((req, res, next) => {
 		Partner.findByIdAndUpdate(
