@@ -7,17 +7,17 @@ partnerRouter
 	.route('/')
 	.get((req, res, next) => {
 		Partner.find()
-			.then((partner) => {
+			.then((partners) => {
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
-				res.json(partner);
+				res.json(partners);
 			})
 			.catch((err) => next(err));
 	})
 	.post((req, res, next) => {
 		Partner.create(req.body)
 			.then((partner) => {
-				console.log('Campsite Created ', partner);
+				console.log('Partner Created ', partner);
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
 				res.json(partner);
@@ -26,7 +26,7 @@ partnerRouter
 	})
 	.put((req, res) => {
 		res.statusCode = 403;
-		res.end(`PUT operation not supported on /partners`);
+		res.end('PUT operation not supported on /partners');
 	})
 	.delete((req, res, next) => {
 		Partner.deleteMany()
@@ -68,7 +68,7 @@ partnerRouter
 			})
 			.catch((err) => next(err));
 	})
-	.delete((req, res) => {
+	.delete((req, res, next) => {
 		Partner.findByIdAndDelete(req.params.partnerId)
 			.then((response) => {
 				res.statusCode = 200;

@@ -7,17 +7,17 @@ promotionRouter
 	.route('/')
 	.get((req, res, next) => {
 		Promotion.find()
-			.then((promotion) => {
+			.then((promotions) => {
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
-				res.json(promotion);
+				res.json(promotions);
 			})
 			.catch((err) => next(err));
 	})
-	.post((req, res) => {
+	.post((req, res, next) => {
 		Promotion.create(req.body)
 			.then((promotion) => {
-				console.log('Campsite Created ', promotion);
+				console.log('Partner Created ', promotion);
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
 				res.json(promotion);
@@ -26,7 +26,7 @@ promotionRouter
 	})
 	.put((req, res) => {
 		res.statusCode = 403;
-		res.end(`PUT operation not supported on /promotions`);
+		res.end('PUT operation not supported on /promotions');
 	})
 	.delete((req, res, next) => {
 		Promotion.deleteMany()
@@ -42,10 +42,10 @@ promotionRouter
 	.route('/:promotionId')
 	.get((req, res, next) => {
 		Promotion.findById(req.params.promotionId)
-			.then((partner) => {
+			.then((promotion) => {
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
-				res.json(partner);
+				res.json(promotion);
 			})
 			.catch((err) => next(err));
 	})
@@ -68,7 +68,7 @@ promotionRouter
 			})
 			.catch((err) => next(err));
 	})
-	.delete((req, res) => {
+	.delete((req, res, next) => {
 		Promotion.findByIdAndDelete(req.params.promotionId)
 			.then((response) => {
 				res.statusCode = 200;
