@@ -5,8 +5,7 @@ const partnerSchema = new Schema(
 	{
 		name: {
 			type: String,
-			required: true,
-			unique: true
+			required: true
 		},
 		image: {
 			type: String,
@@ -14,7 +13,7 @@ const partnerSchema = new Schema(
 		},
 		featured: {
 			type: Boolean,
-			required: false
+			default: false
 		},
 		description: {
 			type: String,
